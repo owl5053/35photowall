@@ -4,7 +4,7 @@ dim photo()
 set FSO=CreateObject ("Scripting.FileSystemObject")
 photoday = fso.GetSpecialFolder(2): if right(bingfile,1)<>"\" then photoday=photoday & "\" : photoday = photoday & "35photowall.jpg"
 
-sUrlRequest = "https://35photo.pro/genre_97/new"
+sUrlRequest = "https://35photo.pro/genre_99/new"
 Set oXMLHTTP = CreateObject("MSXML2.XMLHTTP")
 oXMLHTTP.Open "GET", sUrlRequest, False
 oXMLHTTP.Send
@@ -52,7 +52,7 @@ Set objWshShell = WScript.CreateObject("Wscript.Shell")
 'objWshShell.Run "%windir%\System32\RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters", 1, False
 
 'use irfanview if you want
-objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=3 /killmesoftly", 1, False 
+objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=2 /killmesoftly", 1, False 
 
 Set oXMLHTTP2 = Nothing
 Set oADOStream = Nothing
