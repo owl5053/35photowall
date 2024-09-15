@@ -2,11 +2,13 @@
 dim photoday, lnk, sUrlRequest, pos, c
 dim photo()
 set FSO=CreateObject ("Scripting.FileSystemObject")
-photoday = fso.GetSpecialFolder(2): if right(bingfile,1)<>"\" then photoday=photoday & "\" : photoday = photoday & "35photowall.jpg"
+photoday = fso.GetSpecialFolder(2): if right(photoday,1)<>"\" then photoday=photoday & "\" : photoday = photoday & "35photowall.jpg"
 
-sUrlRequest = "https://35photo.pro/genre_99/new"
-Set oXMLHTTP = CreateObject("MSXML2.XMLHTTP")
+sUrlRequest = "https://35photo.pro/genre_99/new" ' also you can set 98 - only 18+ :)
+Set oXMLHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
 oXMLHTTP.Open "GET", sUrlRequest, False
+
+oXMLHTTP.setRequestHeader "Cookie", "nude=true"
 oXMLHTTP.Send
 xmlfile=oXMLHTTP.Responsetext
 Set oXMLHTTP = Nothing
@@ -35,7 +37,7 @@ randomize
 lnk=photo(1+int(rnd*UBound(photo)))
 
 
-Set oXMLHTTP2 = CreateObject("MSXML2.XMLHTTP")
+Set oXMLHTTP2 = CreateObject("WinHttp.WinHttpRequest.5.1")
 oXMLHTTP2.Open "GET", lnk, False
 oXMLHTTP2.Send
 Set oADOStream = CreateObject("ADODB.Stream")
@@ -52,7 +54,7 @@ Set objWshShell = WScript.CreateObject("Wscript.Shell")
 'objWshShell.Run "%windir%\System32\RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters", 1, False
 
 'use irfanview if you want
-objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=2 /killmesoftly", 1, False 
+objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=3 /killmesoftly", 1, False 
 
 Set oXMLHTTP2 = Nothing
 Set oADOStream = Nothing
