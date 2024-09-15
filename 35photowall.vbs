@@ -4,7 +4,7 @@ dim photo()
 set FSO=CreateObject ("Scripting.FileSystemObject")
 photoday = fso.GetSpecialFolder(2): if right(photoday,1)<>"\" then photoday=photoday & "\" : photoday = photoday & "35photowall.jpg"
 
-sUrlRequest = "https://35photo.pro/genre_99/new" ' also you can set 98 - only 18+ :)
+sUrlRequest = "https://35photo.pro/genre_99/new"' also you can set 98 - only 18+ :)
 Set oXMLHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
 oXMLHTTP.Open "GET", sUrlRequest, False
 
@@ -50,11 +50,13 @@ oADOStream.SaveToFile photoday, 2
 
 Set objWshShell = WScript.CreateObject("Wscript.Shell")
 'use OS to set wallpaper
-'objWshShell.RegWrite "HKEY_CURRENT_USER\Control Panel\Desktop\Wallpaper", photoday, "REG_SZ"
-'objWshShell.Run "%windir%\System32\RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters", 1, False
+Set objFile = FSO.GetFile(photoday)
+Set objShellApp = CreateObject("Shell.Application")
+Set objFolder = objShellApp.Namespace(FSO.GetParentFolderName(objFile))
+objFolder.ParseName(FSO.GetFileName(objFile)).InvokeVerb "setdesktopwallpaper"
 
 'use irfanview if you want
-objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=3 /killmesoftly", 1, False 
+'objWshShell.Run Chr(34) & "c:\Programs\IrfanView\i_view64.exe" & Chr(34) & " " & Chr(34) & photoday & Chr(34) & " /wall=3 /killmesoftly", 1, False 
 
 Set oXMLHTTP2 = Nothing
 Set oADOStream = Nothing
