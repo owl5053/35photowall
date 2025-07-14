@@ -21,7 +21,7 @@ do
 ef=instr(pos,lcase(xmlfile),"_800n.jpg")
 
 if ef<>0 then 
-	beg=instrrev(lcase(xmlfile),"https://c1.35photo.pro",ef)
+	beg=instrrev(lcase(xmlfile),"https://c1.35photo.ru",ef)
 	lnk=mid(xmlfile,beg,ef-beg+9)
 	lnk=replace(lnk,"_temp","_main")
 	lnk=replace(lnk,"/sizes","")
